@@ -2,43 +2,43 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
-import { Contact } from '../entity/contact'
+import { User } from '../entity/user'
 
 @Injectable()
-export class ContactsService {
+export class UsersService {
     constructor(private http: Http) { }
 
-    _url: string = 'http://localhost:9000/contacts'
+    _url: string = 'http://localhost:9000/users'
 
-    getContacts() {
+    getUsers() {
         return this.http.get(this._url)
             .map((res: Response) => res.json())
             .catch(this.handleError);
     }
 
-    getContact(id: number) {
+    getUser(id: number) {
         return this.http.get(this._url + '/' + id)
             .map((res: Response) => res.json())
             .catch(this.handleError);
     }
 
-    postContact(contact: Contact) {
-        return this.http.post(this._url, JSON.stringify(contact), { 
+    postUser(user: User) {
+        return this.http.post(this._url, JSON.stringify(user), { 
                 headers: new Headers({ 'Content-Type': 'application/json' }) 
             })
             .map((res: Response) => res.json())
             .catch(this.handleError);
     }
 
-    putContact(contact: Contact) {
-        return this.http.put(this._url, JSON.stringify(contact), { 
+    putUser(user: User) {
+        return this.http.put(this._url, JSON.stringify(user), { 
                 headers: new Headers({ 'Content-Type': 'application/json' }) 
             })
             .map((res: Response) => res.json())
             .catch(this.handleError);
     }
 
-    deleteContact(id: number) {
+    deleteUser(id: number) {
         return this.http.delete(this._url + '/' + id)
             .catch(this.handleError);
     }

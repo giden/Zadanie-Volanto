@@ -1,7 +1,7 @@
-<h1 class="page-header">Dashboard</h1>
-
-<h2 class="sub-header">Section title</h2>
-<div class="table-responsive">
+<h2 class="sub-header">Contacts</h2>
+<div [hidden]="!error">An error occurred</div>
+<div [hidden]="!errorRemove">An error occurred</div>
+<div [hidden]="error" class="table-responsive">
     <table class="table table-striped">
         <thead>
             <tr>
@@ -13,21 +13,16 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1,001</td>
-                <td>Lorem</td>
-                <td>ipsum</td>
-                <td>dolor</td>
-                <td><a href><i class="fa fa-edit"></i></a></td>
+            <tr *ngFor="let contact of contacts">
+                <td>{{contact.name}}</td>
+                <td>{{contact.surname}}</td>
+                <td>{{contact.firmName}}</td>
+                <td>{{contact.email}}</td>
+                <td>{{contact.phone}}</td>
+                <td style="cursor: pointer;" (click)="router.navigate(['/contacts/new', contact.id])"><i class="fa fa-edit"></i></td>
+                <td style="cursor: pointer;" (click)="deleteContact(contact.id)"><i class="fa fa-trash"></i></td>
             </tr>
-            <tr>
-                <td>1,002</td>
-                <td>amet</td>
-                <td>consectetur</td>
-                <td>adipiscing</td>
-                <td>elit</td>
-            </tr>
-
+           
         </tbody>
     </table>
 </div>

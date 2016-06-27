@@ -15,7 +15,8 @@ export const ContactsRoutes: RouterConfig = [
         component: ContactsComponent,
         children: [
             { path: '', component: ContactListComponent },
-            { path: 'new', component: ContactNewComponent }
+            { path: 'new', component: ContactNewComponent },
+            { path: 'new/:id', component: ContactNewComponent }
         ]
     }
 ];

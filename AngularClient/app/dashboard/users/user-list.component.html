@@ -1,6 +1,4 @@
-<h1 class="page-header">Dashboard</h1>
-
-<h2 class="sub-header">Section title</h2>
+<h2 class="sub-header">List of contacts</h2>
 <div class="table-responsive">
     <table class="table table-striped">
         <thead>
@@ -13,21 +11,14 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1,001</td>
-                <td>Lorem</td>
-                <td>ipsum</td>
-                <td>dolor</td>
-                <td><a href><i class="fa fa-edit"></i></a></td>
+            <tr *ngFor="let user of users">
+                <td>{{user.username}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.surname}}</td>
+                <td>{{user.role}}</td>
+                <td>{{user.email}}</td>
             </tr>
-            <tr>
-                <td>1,002</td>
-                <td>amet</td>
-                <td>consectetur</td>
-                <td>adipiscing</td>
-                <td>elit</td>
-            </tr>
-
+           
         </tbody>
     </table>
 </div>
