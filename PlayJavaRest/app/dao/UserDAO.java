@@ -19,6 +19,13 @@ public class UserDAO {
                 .getSingleResult());
     }
 
+    public User findUserByUsername(String name) throws Throwable {
+        return JPA.withTransaction(() -> (User) JPA.em()
+                .createQuery("select u from user_ u u.username=:name")
+                .setParameter("name", name)
+                .getSingleResult());
+    }
+
     public User createUser(User user) {
         JPA.withTransaction(() -> JPA.em().persist(user));
         return user;

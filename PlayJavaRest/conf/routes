@@ -9,3 +9,5 @@ GET     /users/:id             controllers.UserController.getUser(id: Long)
 POST    /users                 controllers.UserController.addUser
 PUT     /users/                controllers.UserController.updateUser()
 DELETE  /users/:id             controllers.UserController.deleteUser(id: Long)
+
+POST    /auth/login                 controllers.AuthController.login
