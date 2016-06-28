@@ -33,7 +33,7 @@ export class ContactNewComponent implements OnInit, OnDestroy {
             let id = +params['id'];
             if (id) {
                 this.sub = this._service.getContact(id).subscribe(
-                    contact => this.contact = <Contact>contact
+                    data => this.contact = <Contact>data
                 );
             }
         });
@@ -42,13 +42,13 @@ export class ContactNewComponent implements OnInit, OnDestroy {
     onSubmit() {
         if (this.contact.id) {
             this._service.putContact(this.contact).subscribe(
-                data => this.router.navigate(['/contacts']),
-                err => this.error = true
+                () => this.router.navigate(['/contacts']),
+                () => this.error = true
             );
         } else {
             this._service.postContact(this.contact).subscribe(
-                data => this.router.navigate(['/contacts']),
-                err => this.error = true
+                () => this.router.navigate(['/contacts']),
+                () => this.error = true
             );
         }
     }

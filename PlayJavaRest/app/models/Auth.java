@@ -1,12 +1,12 @@
 package models;
 
 public class Auth {
-    public String name;
+    public String user;
     public String token;
     public String role;
 
-    public Auth(String name, String role, String token) {
-        this.name = name;
+    public Auth(String user, String role, String token) {
+        this.user = user;
         this.token = token;
         this.role = role;
     }

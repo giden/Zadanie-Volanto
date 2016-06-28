@@ -1,12 +1,12 @@
 import { provideRouter, RouterConfig } from '@angular/router';
 
 import { UserListComponent } from './user-list.component'
-import { AuthGuard } from '../../authAdmin.guard'
+import { AuthAdminGuard } from '../../authAdmin.guard'
 
 export const UsersRoutes: RouterConfig = [
     {
         path: 'users',
-        canActivate: [AuthGuard],
+        canActivate: [AuthAdminGuard],
         component: UserListComponent
     }
 ];

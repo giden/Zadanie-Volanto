@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ContactsService } from '../../service/contacts.service' 
+import { ContactsService } from '../../service/contacts.service'
 import { Contact } from '../../entity/contact'
 
 @Component({
@@ -19,17 +19,24 @@ export class ContactListComponent implements OnInit {
 
     ngOnInit() {
         this.sub = this._service.getContacts().subscribe(
-            contacts => this.contacts = <Contact[]> contacts,
-            error => this.error = true )
+            data => this.contacts = <Contact[]>data,
+            () => this.error = true)
     }
+
 
     deleteContact(id: number) {
         this.sub = this._service.deleteContact(id).subscribe(
-            contacts => this.contacts = <Contact[]> contacts,
-            error => this.errorRemove = true )
+            () => this.getContacts(),
+            () => this.errorRemove = true);
+    }
+
+    getContacts() {
+        this.sub = this._service.getContacts().subscribe(
+            data => this.contacts = <Contact[]>data,
+            () => this.error = true)
     }
 
     ngOnDestroy() {
         this.sub.unsubscribe();
     }
- }
+}

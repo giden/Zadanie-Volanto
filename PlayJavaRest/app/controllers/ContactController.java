@@ -3,6 +3,7 @@ package controllers;
 import com.google.inject.Inject;
 import dao.ContactDAO;
 import models.Contact;
+import play.db.jpa.Transactional;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -38,7 +39,7 @@ public class ContactController extends Controller {
         return ok(Json.toJson(contactById));
     }
 
-    public Result addContact() {
+    public Result createContact() {
         Contact contact = Json.fromJson(request().body().asJson(), Contact.class);
 
         contact = dao.createContact(contact);

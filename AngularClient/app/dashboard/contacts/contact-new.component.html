@@ -17,7 +17,7 @@
     </div>
         <div class="form-group">
         <label for="firm">Firm name</label>
-        <input id="firm" type="text" class="form-control" required [(ngModel)]="contact.firmName" ngControl="firmName" #firmName="ngForm">
+        <input id="firm" type="text" class="form-control" required [(ngModel)]="contact.firmname" ngControl="firmName" #firmName="ngForm">
         <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
             Firm name is required
         </div>

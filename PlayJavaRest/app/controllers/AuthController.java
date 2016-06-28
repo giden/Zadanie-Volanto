@@ -24,7 +24,7 @@ public class AuthController extends Controller {
             User userRetrieved = dao.findUserByUsername(user.username);
 
             if (userRetrieved.password.equals(user.password)) {
-                return ok(Json.toJson(new Auth(user.username, user.role.toString(), utils.getToken())));
+                return ok(Json.toJson(new Auth(user.username, userRetrieved.role.name(), utils.getToken())));
             }
 
         } catch (Throwable throwable) {

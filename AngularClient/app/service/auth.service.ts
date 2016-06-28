@@ -4,15 +4,12 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class AuthenticationService {
-  token: string;
-  user: string;
 
   constructor(private http: Http) {
-    this.token = sessionStorage.getItem('token');
   }
 
   login(username: String, password: String): any {
-    return this.http.post('/auth/login', JSON.stringify({
+    return this.http.post('http://localhost:9000/auth/login', JSON.stringify({
       username: username,
       password: password
     }), {
@@ -20,19 +17,16 @@ export class AuthenticationService {
       })
       .map((res: any) => {
         let data = res.json();
-        this.token = data.token;
-        this.user = data.user;
-        localStorage.setItem('token', this.token);
-        localStorage.setItem('user', this.user);
+        sessionStorage.setItem('token', data.token);
+        sessionStorage.setItem('role', data.role);
+        sessionStorage.setItem('user', data.user);
       });
   }
 
   logout() {
-    this.token = undefined;
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('user');
-
-    return Observable.of(true);
+    sessionStorage.removeItem('role');
   }
 }
 
@@ -41,6 +35,7 @@ export function isLogged() {
 }
 export function isAdmin() {
   let role = <string>sessionStorage.getItem('role');
+  console.log('tets'+role);
   return role === 'ROLE_ADMIN';
 }
 

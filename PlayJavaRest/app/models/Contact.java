@@ -9,14 +9,14 @@ import javax.persistence.Id;
 public class Contact {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     public Long id;
 
     public String name;
 
     public String surname;
 
-    public String firmName;
+    public String firmname;
 
     public String email;
 

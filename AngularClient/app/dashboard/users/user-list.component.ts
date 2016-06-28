@@ -20,7 +20,7 @@ export class UserListComponent {
     ngOnInit() {
         this.sub = this._service.getUsers().subscribe(
             data => this.users = <User[]>data,
-            error => this.error = true)
+            () => this.error = true)
     }
 
     ngOnDestroy() {

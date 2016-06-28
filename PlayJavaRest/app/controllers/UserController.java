@@ -38,7 +38,7 @@ public class UserController extends Controller {
         return ok(Json.toJson(userById));
     }
 
-    public Result addUser() {
+    public Result createUser() {
         User user = Json.fromJson(request().body().asJson(), User.class);
 
         user = dao.createUser(user);

@@ -7,7 +7,6 @@ import {AuthenticationService} from './service/auth.service';
     selector: 'login',
     template: `
   <div class="container">
-
     <form class="form-signin" #loginForm="ngForm" (submit)="onSubmit()">
         <h2 class="form-signin-heading">Please sign in</h2>
         <input type="text" class="form-control" placeholder="User Name" required [(ngModel)]="username" autofocus ngControl="username">
@@ -30,10 +29,9 @@ export class LoginComponent {
     constructor(public _auth: AuthenticationService, public router: Router) { }
 
     onSubmit() {
-        this._auth.login(this.username, this.password)
-            .subscribe(
+        this._auth.login(this.username, this.password).subscribe(
             (token: any) => this.router.navigate(['/contacts']),
             () => { this.error = true; }
-            );
+        );
     }
 }

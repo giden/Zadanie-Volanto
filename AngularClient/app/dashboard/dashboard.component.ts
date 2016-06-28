@@ -16,6 +16,6 @@ export class DashboardComponent {
     }
 
     logOut() {
-        this._auth.logout().subscribe();
+        this._auth.logout();
     }
 }

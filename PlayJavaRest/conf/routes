@@ -1,13 +1,13 @@
 GET     /contacts                 controllers.ContactController.getContacts
 GET     /contacts/:id             controllers.ContactController.getContact(id: Long)
-POST    /contacts                 controllers.ContactController.addContact
-PUT     /contacts/                controllers.ContactController.updateContact()
+POST    /contacts                 controllers.ContactController.createContact
+PUT     /contacts                 controllers.ContactController.updateContact()
 DELETE  /contacts/:id             controllers.ContactController.deleteContact(id: Long)
 
 GET     /users                 controllers.UserController.getUsers
 GET     /users/:id             controllers.UserController.getUser(id: Long)
-POST    /users                 controllers.UserController.addUser
-PUT     /users/                controllers.UserController.updateUser()
+POST    /users                 controllers.UserController.createUser
+PUT     /users                 controllers.UserController.updateUser()
 DELETE  /users/:id             controllers.UserController.deleteUser(id: Long)
 
 POST    /auth/login                 controllers.AuthController.login
