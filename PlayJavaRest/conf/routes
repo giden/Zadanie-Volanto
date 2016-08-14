@@ -1,13 +1,28 @@
-GET     /contacts                 controllers.ContactController.getContacts
-GET     /contacts/:id             controllers.ContactController.getContact(id: Long)
-POST    /contacts                 controllers.ContactController.createContact
-PUT     /contacts                 controllers.ContactController.updateContact()
-DELETE  /contacts/:id             controllers.ContactController.deleteContact(id: Long)
+GET           /events                      controllers.EventController.getEvents
+GET           /events/:id                  controllers.EventController.getEvent(id: Long)
+POST          /events                      controllers.EventController.createEvent
+PUT           /events                      controllers.EventController.updateEvent()
+DELETE        /events/:id                  controllers.EventController.deleteEvent(id: Long)
 
-GET     /users                 controllers.UserController.getUsers
-GET     /users/:id             controllers.UserController.getUser(id: Long)
-POST    /users                 controllers.UserController.createUser
-PUT     /users                 controllers.UserController.updateUser()
-DELETE  /users/:id             controllers.UserController.deleteUser(id: Long)
+GET           /users                       controllers.UserController.getUsers
+GET           /users/:id                   controllers.UserController.getUser(id: String)
+GET           /me                          controllers.UserController.getLoginUser
+POST          /users                       controllers.UserController.createUser(countryId: Int ?= -1)
+POST          /register                    controllers.UserController.register(countryId: Int ?= -1)
+GET           /register/:id                controllers.UserController.userExist(id: String)
+PUT           /users                       controllers.UserController.updateUser()
+DELETE        /users/:id                   controllers.UserController.deleteUser(id: String)
+GET           /user/attack/:id             controllers.UserController.attack(id: Long)
 
-POST    /auth/login                 controllers.AuthController.login
+POST          /auth/login                  controllers.AuthController.login
+
+GET           /countries                   controllers.CountryController.getCountries
+GET           /countries/:id               controllers.CountryController.getCountry(id: Long)
+POST          /countries                   controllers.CountryController.createCountry
+PUT           /countries                   controllers.CountryController.updateCountry()
+DELETE        /countries/:id               controllers.CountryController.deleteCountry(id: Long)
+GET           /country/addPresident        controllers.CountryController.addPresident(president: String, country: String)
+
+GET           /country/callBattle          controllers.CountryController.callBattle(aggressor: String, defender: String)
+GET           /country/battles             controllers.CountryController.getBattles
+GET           /country/battles/:id         controllers.CountryController.getBattle(id: Long)

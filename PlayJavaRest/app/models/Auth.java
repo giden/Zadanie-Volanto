@@ -1,12 +1,22 @@
 package models;
 
-public class Auth {
-    public String user;
-    public String token;
-    public String role;
+import javax.persistence.*;
 
-    public Auth(String user, String role, String token) {
-        this.user = user;
+@Entity
+public class Auth {
+
+    @Id
+    public String username;
+    public String token;
+
+    @Enumerated(EnumType.STRING)
+    public Role role;
+
+    public Auth() {
+    }
+
+    public Auth(String user, Role role, String token) {
+        this.username = user;
         this.token = token;
         this.role = role;
     }

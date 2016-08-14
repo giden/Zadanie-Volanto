@@ -7,11 +7,12 @@ import play.db.jpa.JPAApi;
 import play.db.jpa.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import java.util.List;
 
 public class UserDAO {
 
-    JPAApi api;
+    private JPAApi api;
 
     @Inject
     public UserDAO(JPAApi api) {
@@ -23,21 +24,19 @@ public class UserDAO {
         return api.withTransaction(() -> (List<User>) api.em().createQuery("select u from user_ u").getResultList());
     }
 
-    public User findUserById(Long id) throws Throwable {
-        return api.withTransaction(() -> (User) api.em()
-                .createQuery("select u from user_ u u.id=:id")
-                .setParameter("id", id)
-                .getSingleResult());
-    }
-
-    public User findUserByUsername(String name) throws Throwable {
-        return api.withTransaction(() -> (User) api.em()
-                .createQuery("select u from user_ u where u.username=:name")
-                .setParameter("name", name)
-                .getSingleResult());
+    public User findUserByUsername(String username) throws Throwable {
+        try {
+            return api.withTransaction(() -> (User) api.em()
+                    .createQuery("select u from user_ u where u.username=:username")
+                    .setParameter("username", username)
+                    .getSingleResult());
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     public User createUser(User user) {
+        System.out.println(user.role);
         api.withTransaction(() -> api.em().persist(user));
         return user;
     }
@@ -46,11 +45,11 @@ public class UserDAO {
         return api.withTransaction(() -> api.em().merge(user));
     }
 
-    public void removeUser(Long id) throws Throwable {
+    public void removeUser(String username) throws Throwable {
         api.withTransaction(() -> {
             EntityManager em = api.em();
             try {
-                em.remove(em.merge(findUserById(id)));
+                em.remove(em.merge(findUserByUsername(username)));
             } catch (Throwable throwable) {
                 throwable.printStackTrace();
             }
